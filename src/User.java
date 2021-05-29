@@ -1,20 +1,35 @@
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class User implements Serializable {
-    private static List<User> extent = new ArrayList<>();
+    private static List<User> extent;
     private String firstName;
     private String lastName;
     private String phoneNumber;
     private String email;
     private Address address;
-    private Blog blog;
+    private List<Blog> blogs;
 
-    public User() {
+    static{
+        extent = Extensions.load("FileExtension.txt");
+        if(extent == null){
+            extent = new ArrayList<>();
+        }
+    }
+
+    public User(String firstName, String lastName, String phoneNumber, String email, Address address, List<Blog> blogs) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        this.blogs = blogs;
         extent.add(this);
+    }
+
+    public static void writeExtent(){
+        Extensions.save(User.extent, "FileExtension.txt");
     }
 
     public String getFirstName() {
@@ -57,23 +72,9 @@ public class User implements Serializable {
         this.address = address;
     }
 
-    public static void writeExtent(ObjectOutputStream stream){
-        try{
-            stream.writeObject(extent);
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }
+    public List<Blog> getBlogs() { return blogs; }
 
-    public static void readExtent(){
-
-    }
-
-    public Blog getBlog() {
-        return blog;
-    }
-
-    public void setBlog(Blog blog) {
-        this.blog = blog;
+    public void setBlog(List<Blog> blogs) {
+        this.blogs = blogs;
     }
 }

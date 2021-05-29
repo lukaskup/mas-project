@@ -2,10 +2,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Country {
-    private static List<Country> extent = new ArrayList<>();
+    private static List<Country> extent;
     private String name;
 
-    public Country() {
+    static{
+        extent = Extensions.load("FileExtension.txt");
+        if(extent == null){
+            extent = new ArrayList<>();
+        }
+    }
+
+    public static void writeExtent(){
+        Extensions.save(Country.extent, "FileExtension.txt");
+    }
+
+    public Country(String name) {
+        this.name = name;
         extent.add(this);
     }
 

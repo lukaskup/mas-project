@@ -9,8 +9,24 @@ public class Address {
     private String city;
     private Country country;
 
-    public Address() {
+    public Address(String street, String streetNumber, String postCode, String city, Country country) {
+        this.street = street;
+        this.streetNumber = streetNumber;
+        this.postCode = postCode;
+        this.city = city;
+        this.country = country;
         extent.add(this);
+    }
+
+    static{
+        extent = Extensions.load("FileExtension.txt");
+        if(extent == null){
+            extent = new ArrayList<>();
+        }
+    }
+
+    public static void writeExtent(){
+        Extensions.save(Address.extent, "FileExtension.txt");
     }
 
     public String getStreet() {

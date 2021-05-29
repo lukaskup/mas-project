@@ -6,11 +6,34 @@ public class Article {
     private String title;
     private String content;
     private String status;
-    private int qualityRate;
-    private String adminComment;
+    private int qualityRate; // optional
+    private String adminComment; // optional
 
-    public Article() {
+    public Article(String title, String content) {
+        this.title = title;
+        this.content = content;
+        this.status = "new";
         extent.add(this);
+    }
+
+    public Article(String title, String content, String status, int qualityRate, String adminComment) {
+        this.title = title;
+        this.content = content;
+        this.status = status;
+        this.qualityRate = qualityRate;
+        this.adminComment = adminComment;
+        extent.add(this);
+    }
+
+    static{
+        extent = Extensions.load("FileExtension.txt");
+        if(extent == null){
+            extent = new ArrayList<>();
+        }
+    }
+
+    public static void writeExtent(){
+        Extensions.save(Article.extent, "FileExtension.txt");
     }
 
     public String getTitle() {
