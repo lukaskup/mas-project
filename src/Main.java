@@ -8,21 +8,19 @@ public class Main {
 
     public static boolean breakFlag = false;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         Scanner in = new Scanner(System.in);
         while(!breakFlag){
 
             int option = in.nextInt();
             switch (option){
                 case 1:
+                    System.out.println("ograniczenie atrybutu");
                     //ograniczenie atrybutu
 
                     //will throw exception
-                    new Blog("blogNameWithOverThirtyTwoCharacters", "www.blogName.com");
-
-                    //correct
-                    //new Blog("blogNameWithOverThirtyTwoCharacters", "www.blogName.com");
-                    Blog.writeExtent();
+                    Blog blog = new Blog("test", "www.blogName.com");
+                    blog.setName("blogNameWithOverThirtyTwoCharacters");
                     break;
                 case 2:
                     //ograniczenie unique
@@ -33,26 +31,15 @@ public class Main {
 
                     //will throw exception
                     new User("Lukasz", "Skup", "123123123", "lukasz@email.com", address, blogs);
-                    new User("Mateusz", "Pietrzak", "123123123", "lukasz@email.com", address, blogs);
-
-                    //correct
-                    //new User("Lukasz", "Skup", "123123123", "lukasz@email.com", address, blogs);
-                    //new User("Mateusz", "Pietrzak", "345345345", "lukasz@email.com", address, blogs);
-
-                    Blog.writeExtent();
-                    Address.writeExtent();
-                    User.writeExtent();
+                    User mateusz = new User("Mateusz", "Pietrzak", "345345345", "lukasz@email.com", address, blogs);
+                    mateusz.setPhoneNumber("123123123");
                     break;
                 case 3:
                     //ograniczenie własne
 
                     //will throw exception
-                    new Article("tytuł", "jakas przykladowa tresc artykułu");
-
-                    //correct
-                    //new Article("tytuł", "tutaj mamy brzydkie slowo kurcze");
-
-                    Article.writeExtent();
+                    Article article = new Article("tytuł", "jakas przykladowa tresc artykułu");
+                    article.setContent("jakies brzydkie słowo na przykład kurde");
                 default:
                     breakFlag = true;
                     break;
