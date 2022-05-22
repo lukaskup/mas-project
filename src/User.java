@@ -51,8 +51,14 @@ public class User implements Serializable {
     public String getPhoneNumber() {
         return phoneNumber;
     }
+    //unique
+    public void setPhoneNumber(String phoneNumber) throws Exception {
+        for(User user : extent){
+            if(user.phoneNumber.equals(phoneNumber)){
+                throw new Exception("there is already user with this phone number");
+            }
+        }
 
-    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

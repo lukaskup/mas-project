@@ -1,4 +1,6 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Article {
@@ -48,7 +50,9 @@ public class Article {
         return content;
     }
 
-    public void setContent(String content) {
+    //ograniczenie własne
+    public void setContent(String content) throws Exception {
+        checkBadWords(content);
         this.content = content;
     }
 
@@ -74,5 +78,15 @@ public class Article {
 
     public void setAdminComment(String adminComment) {
         this.adminComment = adminComment;
+    }
+
+    private List<String> badWords = Arrays.asList("kurcze", "kurde", "psia mać", "kurczaczki", "baba");
+
+    private ArrayList<String> checkBadWords(String content) throws Exception{
+        for(String badWord : badWords) {
+            if(content.contains(badWord)){
+                throw new Exception(String.format("Article content have bad word in it (%s), please remove them to submit article", badWord));
+            }
+        }
     }
 }

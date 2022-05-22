@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+//W pliku README.md znajduje się opis i wskazanie implementacji poszczególnych podpunktów mp4
 public class Main {
 
     public static boolean breakFlag = false;
@@ -12,15 +15,36 @@ public class Main {
             int option = in.nextInt();
             switch (option){
                 case 1:
-                    System.out.println("1 - Stwórz pracownika");
-                    Country newCountry = new Country("Poland");
-                    Address newAddress = new Address("siedlecka", "23", "08-110", "Siedlce", newCountry);
-                    List<Blog> newBlogs = List.of(new Blog("lukanio blog", "lukanio.blog.pl"), new Blog("lukanio blog 2", "lukanio2.blog.pl"));
-                    new User("łukanio", "skup", "123412123", "lukanio@gmail.com", newAddress, newBlogs);
+                    //ograniczenie atrybutu
+
+                    //will throw exception
+                    new Blog("blogNameWithOverThirtyTwoCharacters", "www.blogName.com");
+
+                    //correct
+                    //new Blog("blogNameWithOverThirtyTwoCharacters", "www.blogName.com");
+                    Blog.writeExtent();
                     break;
                 case 2:
-                    System.out.println("2 - Zapisz pracownika");
+                    //ograniczenie unique
+
+                    Country poland = new Country("poland");
+                    Address address = new Address("belgradzka", "2", "08-110", "warsaw", poland);
+                    List<Blog> blogs = new ArrayList<Blog>();
+
+                    //will throw exception
+                    new User("Lukasz", "Skup", "123123123", "lukasz@email.com", address, blogs);
+                    new User("Mateusz", "Pietrzak", "123123123", "lukasz@email.com", address, blogs);
+
+                    //correct
+                    //new User("Lukasz", "Skup", "123123123", "lukasz@email.com", address, blogs);
+                    //new User("Mateusz", "Pietrzak", "345345345", "lukasz@email.com", address, blogs);
+
+                    Blog.writeExtent();
+                    Address.writeExtent();
                     User.writeExtent();
+                    break;
+                case 3:
+                    //ograniczenie własne
                 default:
                     breakFlag = true;
                     break;

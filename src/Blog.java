@@ -27,7 +27,14 @@ public class Blog {
         return name;
     }
 
-    public void setName(String name) {
+    //ograniczenie atrybutu
+    public void setName(String name) throws Exception {
+        if(name.length() == 0){
+            throw new Exception("Blog name can't be empty");
+        } else if(name.length() > maxBlogNameLength){
+            throw new Exception(String.format("Blog name can't be longer than %s characters", maxBlogNameLength));
+        }
+
         this.name = name;
     }
 
@@ -38,4 +45,6 @@ public class Blog {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    private int maxBlogNameLength = 32;
 }
