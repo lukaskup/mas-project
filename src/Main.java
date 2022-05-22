@@ -51,6 +51,8 @@ public class Main {
 
                     //correct
                     //new Article("tytuł", "tutaj mamy brzydkie slowo kurcze");
+
+                    Article.writeExtent();
                 default:
                     breakFlag = true;
                     break;

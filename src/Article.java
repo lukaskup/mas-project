@@ -82,7 +82,7 @@ public class Article {
 
     private List<String> badWords = Arrays.asList("kurcze", "kurde", "psia mać", "kurczaczki", "baba");
 
-    private ArrayList<String> checkBadWords(String content) throws Exception{
+    private void checkBadWords(String content) throws Exception{
         for(String badWord : badWords) {
             if(content.contains(badWord)){
                 throw new Exception(String.format("Article content have bad word in it (%s), please remove them to submit article", badWord));
