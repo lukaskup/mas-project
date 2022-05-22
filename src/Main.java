@@ -45,6 +45,12 @@ public class Main {
                     break;
                 case 3:
                     //ograniczenie własne
+
+                    //will throw exception
+                    new Article("tytuł", "jakas przykladowa tresc artykułu");
+
+                    //correct
+                    //new Article("tytuł", "tutaj mamy brzydkie slowo kurcze");
                 default:
                     breakFlag = true;
                     break;

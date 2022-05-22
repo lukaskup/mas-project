@@ -6,9 +6,10 @@ Ograniczenia
 
 - Atrybutów 
   - Blog.java:30
-  - ograniczenie statyczne
+  - ograniczenie statyczne, Blog.name nie może mieć wiecej niż 32 znaki
 - Unique
   - User.java:54
+  - User.phoneNumber musi być unikalny
 - Subset
   - brak implemetacji
 - Ordered
@@ -19,3 +20,4 @@ Ograniczenia
   - brak imlementacji
 - Ograniczenie Własne
   - Article.java:53
+  - Treść artykułów nie może zawierać wskazanych słów
